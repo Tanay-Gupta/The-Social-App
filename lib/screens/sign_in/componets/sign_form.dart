@@ -55,12 +55,13 @@ class _SignFormState extends State<SignForm> {
           const SizedBox(height: (30)),
           DefaultButton(
             press: () {
-              if (_formKey.currentState!.validate()) {
-                _formKey.currentState!.save();
-                // if all are valid then go to success screen
-                // KeyboardUtil.hideKeyboard(context);
-                // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
-              }
+              Navigator.pushNamed(context, "/signup");
+              // if (_formKey.currentState!.validate()) {
+              //   _formKey.currentState!.save();
+              //   // if all are valid then go to success screen
+              //   // KeyboardUtil.hideKeyboard(context);
+              //   // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+              // }
             },
             text: "LOG IN",
           ),

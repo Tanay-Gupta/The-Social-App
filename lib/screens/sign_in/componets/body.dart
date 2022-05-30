@@ -13,7 +13,7 @@ class Body extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: EdgeInsets.fromLTRB(20, 25, 20, 20),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +53,9 @@ class Body extends StatelessWidget {
                     style: TextStyle(color: kPrimaryColor, fontSize: 15),
                   ),
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, "/signup");
+                      },
                       child: Text(
                         "SIGN UP",
                         style: headingStyle.copyWith(fontSize: 16),
