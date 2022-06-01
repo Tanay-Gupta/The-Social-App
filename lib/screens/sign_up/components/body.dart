@@ -39,7 +39,7 @@ class Body extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    " ALREADY HAVE AN ACCOUNT",
+                    " Already have an account?",
                     style: TextStyle(color: kPrimaryColor, fontSize: 15),
                   ),
                   TextButton(
