@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:swag_app/screens/home/components/app_bar.dart';
 import 'package:swag_app/screens/forgot_password/componets/sign_form.dart';
 
 import '../../../constants.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Stories extends StatelessWidget {
   const Stories({Key? key}) : super(key: key);
@@ -8,17 +9,17 @@ class Stories extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 12),
+        const Padding(
+          padding: EdgeInsets.only(left: 12),
           child: Text(
-            "Stories",
-            style: TextStyle(fontFamily: "poppins"),
+            "STORIES",
+            style: TextStyle(fontWeight: FontWeight.w500),
           ),
         ),
-        SizedBox(height: 16),
+        const SizedBox(height: 10),
         Container(
           // color: Colors.red,
-          padding: EdgeInsets.only(bottom: 5),
+          padding: const EdgeInsets.only(bottom: 5),
           height: 160,
           child: ListView(
             scrollDirection: Axis.horizontal,
@@ -44,19 +45,31 @@ class Stories extends StatelessWidget {
           padding: const EdgeInsets.all(5.0),
           child: Container(
             height: 125,
-            width: 90,
+            width: 95,
             //margin: EdgeInsets.only(right: 20),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(20),
+                borderRadius: BorderRadius.circular(17),
                 image: DecorationImage(
                     image: AssetImage(image), fit: BoxFit.cover)),
           ),
         ),
-        Text(name,
-            style: TextStyle(
-                fontFamily: "proxia nova",
-                //fontWeight: FontWeight.bold,
-                fontSize: 12)),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text(name,
+                style: TextStyle(
+                    fontFamily: "proxia nova",
+                    //fontWeight: FontWeight.bold,
+                    fontSize: 12)),
+            SizedBox(
+              width: 2,
+            ),
+            SizedBox(
+                height: 10,
+                width: 10,
+                child: Image.asset("assets/icons/check 5.png"))
+          ],
+        )
       ],
     );
   }
