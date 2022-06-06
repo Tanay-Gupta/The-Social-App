@@ -5,7 +5,7 @@ const kTextColor = Color(0xFFFFFFFF);
 
 const headingStyle = TextStyle(
   fontSize: 28,
-  fontWeight: FontWeight.bold,
+  fontWeight: FontWeight.w800,
   color: Colors.white,
   height: 1.5,
 );

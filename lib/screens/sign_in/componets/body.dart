@@ -26,7 +26,6 @@ class Body extends StatelessWidget {
               SizedBox(height: screenSize.height * 0.01),
               const Text(
                 "Enter your login details",
-                style: TextStyle(fontWeight: FontWeight.w100),
               ),
               SizedBox(height: screenSize.height * 0.12),
               SignForm(),
@@ -34,7 +33,9 @@ class Body extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, '/forget_password');
+                      },
                       child: const Text(
                         "Forget Password?",
                         style: TextStyle(

@@ -3,9 +3,10 @@ import 'components/body.dart';
 
 class OtpScreen extends StatelessWidget {
   final String? number;
+  final int? value;
   static String routeName = "/otp";
 
-  const OtpScreen({Key? key, this.number}) : super(key: key);
+  const OtpScreen({Key? key, this.number, this.value}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +16,7 @@ class OtpScreen extends StatelessWidget {
       // ),
       body: Body(
         number: number,
+        value: value,
       ),
     );
   }

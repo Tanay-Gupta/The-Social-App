@@ -77,9 +77,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Tondo
+    - family: Proxima nova
       fonts:
-        - asset: assets/tondo/tondo.ttf
+        - asset: assets/font/proxima_nova/proxima_nova.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

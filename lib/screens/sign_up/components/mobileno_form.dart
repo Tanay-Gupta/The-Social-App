@@ -41,6 +41,7 @@ class MobileNumberForm extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => OtpScreen(
                     number: code + number.text.toString(),
+                    value: 0,
                   ),
                 ),
               );

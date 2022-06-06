@@ -7,8 +7,10 @@ import 'otp_form.dart';
 
 class Body extends StatelessWidget {
   final String? number;
+  final int? value;
   const Body({
     Key? key,
+    this.value,
     this.number,
   }) : super(key: key);
 
@@ -48,7 +50,14 @@ class Body extends StatelessWidget {
               SizedBox(height: screenSize.height * 0.02),
               DefaultButton(
                 text: "NEXT",
-                press: () {},
+                press: () {
+                  if (value == 0) {
+                    Navigator.pushReplacementNamed(context, '/home');
+                  } else {
+//reset password
+                    Navigator.pushReplacementNamed(context, '/change_password');
+                  }
+                },
               ),
               SizedBox(height: screenSize.height * 0.1),
               // GestureDetector(
