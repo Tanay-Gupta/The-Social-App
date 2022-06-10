@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swag_app/screens/otp/otp_screen.dart';
 import 'package:swag_app/screens/sign_up/components/mobileno_form.dart';
 
 import '../../../constants.dart';
@@ -32,8 +33,21 @@ class Body extends StatelessWidget {
                 height: screenSize.height * .12,
               ),
               MobileNumberForm(),
+              // TextButton(
+              //     onPressed: () {
+              //       Navigator.push(
+              //         context,
+              //         MaterialPageRoute(
+              //           builder: (context) => OtpScreen(
+              //             number: null,
+              //             value: 0,
+              //           ),
+              //         ),
+              //       );
+              //     },
+              //     child: Text("temperory bypass")),
               SizedBox(
-                height: screenSize.height * .5,
+                height: screenSize.height * .47, //.47 tha
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

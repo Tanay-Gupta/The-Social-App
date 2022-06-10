@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swag_app/backend/services/auth/authentication.dart';
 import 'package:swag_app/screens/components/default_button.dart';
 
 import '../../../constants.dart';
@@ -10,23 +11,25 @@ class SignForm extends StatefulWidget {
 
 class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
-  String? email;
-  String? password;
+  late String email;
+  late String password;
   bool? remember = false;
   final List<String?> errors = [];
 
   void addError({String? error}) {
-    if (!errors.contains(error))
+    if (!errors.contains(error)) {
       setState(() {
         errors.add(error);
       });
+    }
   }
 
   void removeError({String? error}) {
-    if (errors.contains(error))
+    if (errors.contains(error)) {
       setState(() {
         errors.remove(error);
       });
+    }
   }
 
   @override
@@ -54,14 +57,51 @@ class _SignFormState extends State<SignForm> {
           ),
           const SizedBox(height: (30)),
           DefaultButton(
-            press: () {
-              Navigator.pushNamed(context, "/signup");
-              // if (_formKey.currentState!.validate()) {
-              //   _formKey.currentState!.save();
-              //   // if all are valid then go to success screen
-              //   // KeyboardUtil.hideKeyboard(context);
-              //   // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
-              // }
+            press: () async {
+              // print(email);
+              // print(password);
+              _formKey.currentState!.save();
+
+              if (email.isEmpty || password.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("Empty field :("),
+                  duration: Duration(seconds: 2),
+                ));
+              } else {
+                // if all are valid then go to success screen
+
+                // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                if (email[0] == '+' && "0123456789".contains(email[1])) {
+                  String response =
+                      await AuthenticationAPI().loginWithPhone(email, password);
+
+                  if (response == 'true') {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("Login successfull"),
+                      duration: Duration(seconds: 2),
+                    ));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(response),
+                      duration: const Duration(seconds: 2),
+                    ));
+                  }
+                } else {
+                  String response = await AuthenticationAPI()
+                      .loginWithUsername(email, password);
+                  if (response == 'true') {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("Login successfull"),
+                      duration: Duration(seconds: 2),
+                    ));
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(response),
+                      duration: const Duration(seconds: 2),
+                    ));
+                  }
+                }
+              }
             },
             text: "LOG IN",
           ),
@@ -72,8 +112,9 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
+      style: const TextStyle(color: kPrimaryColor),
       obscureText: true,
-      onSaved: (newValue) => password = newValue,
+      onSaved: (newValue) => password = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
@@ -109,13 +150,12 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildEmailFormField() {
     return TextFormField(
+      style: const TextStyle(color: Colors.white),
       keyboardType: TextInputType.emailAddress,
-      onSaved: (newValue) => email = newValue,
+      onSaved: (newValue) => email = newValue!,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: kEmailNullError);
-        } else if (emailValidatorRegExp.hasMatch(value)) {
-          removeError(error: kInvalidEmailError);
+          removeError(error: kUsernameNullError);
         }
         return null;
       },
@@ -132,7 +172,7 @@ class _SignFormState extends State<SignForm> {
       decoration: const InputDecoration(
         hintStyle: formfieldTextStyle,
 
-        hintText: "Enter your username or mobile no",
+        hintText: "Enter your username or mobile no (with code)",
         border: InputBorder.none,
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:swag_app/backend/services/auth/authentication.dart';
 import 'package:swag_app/constants.dart';
 import 'package:swag_app/screens/components/default_button.dart';
 import 'package:swag_app/screens/otp/otp_screen.dart';
@@ -36,16 +37,29 @@ class MobileNumberForm extends StatelessWidget {
                 duration: Duration(seconds: 2),
               ));
             } else {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => OtpScreen(
-                    number: code + number.text.toString(),
-                    value: 0,
+              String respose = await AuthenticationAPI()
+                  .sendOtp(code + number.text.toString());
+              if (respose == 'true') {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("Sending OTP...."),
+                  duration: Duration(seconds: 2),
+                ));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => OtpScreen(
+                      number: code + number.text.toString(),
+                      value: 0,
+                    ),
                   ),
-                ),
-              );
-            }
+                );
+              } else {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text(respose),
+                  duration: const Duration(seconds: 2),
+                ));
+              }
+            } //end of else
           },
           text: "NEXT",
         )
@@ -101,11 +115,12 @@ class CodePicker extends StatelessWidget {
                       alignment: Alignment.center,
                       height: 58,
                       width: size.width * .5,
-                      // color: Colors.red,
+                      //color: Colors.red,
                       child: TextFormField(
+                        style: const TextStyle(color: Colors.white),
                         //validator: checker,
                         controller: cnt,
-                        cursorColor: Colors.blue,
+                        cursorColor: kPrimaryColor,
                         //obscureText: privacy,
                         keyboardType: TextInputType.phone,
 

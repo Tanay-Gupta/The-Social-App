@@ -4,7 +4,9 @@ import 'package:swag_app/screens/change_password/change_password.dart';
 import 'package:swag_app/screens/forgot_password/forgot_password.dart';
 import 'package:swag_app/screens/home/home.dart';
 import 'package:swag_app/screens/otp/otp_screen.dart';
-import 'package:swag_app/screens/profile/profile.dart';
+import 'package:swag_app/screens/profile/profilee.dart';
+import 'package:swag_app/screens/register/components/register_form.dart';
+import 'package:swag_app/screens/register/register.dart';
 import 'package:swag_app/screens/sign_in/sign_in_screen.dart';
 import 'package:swag_app/screens/sign_up/sign_up_screen.dart';
 import 'package:swag_app/theme.dart';
@@ -23,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'SWAG',
       theme: theme(),
-      home: HomeScreen(),
+      home: SignInScreen(),
       routes: {
         '/signin': (context) => SignInScreen(),
         '/forget_password': (context) => ForgetPasswordScreen(),
@@ -33,13 +35,6 @@ class MyApp extends StatelessWidget {
         '/home': (context) => HomeScreen(),
         '/profile': (context) => ProfilePage()
       },
-      // initialRoute: SignUpScreen.routeName,
-      // routes: {
-      //   SignInScreen.routeName: (context) => SignInScreen(),
-      //   SignUpScreen.routeName: (context) => SignUpScreen(),
-      //   OtpScreen.routeName: (context) => OtpScreen(),
-
-      // },
     );
   }
 }

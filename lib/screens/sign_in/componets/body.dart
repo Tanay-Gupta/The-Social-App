@@ -44,7 +44,7 @@ class Body extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: screenSize.height * .28,
+                height: screenSize.height * .26,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
