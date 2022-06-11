@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swag_app/backend/services/auth/authentication.dart';
 import 'package:swag_app/screens/components/default_button.dart';
+import 'package:swag_app/screens/homescreen/nav.dart';
 
 import '../../../constants.dart';
 
@@ -57,6 +58,12 @@ class _SignFormState extends State<SignForm> {
           ),
           const SizedBox(height: (30)),
           DefaultButton(
+            longPress: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (context) => Nav()),
+                  (route) => false);
+            },
             press: () async {
               // print(email);
               // print(password);

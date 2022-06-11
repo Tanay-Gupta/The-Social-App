@@ -2,13 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:swag_app/constants.dart';
 
 class DefaultButton extends StatelessWidget {
-  const DefaultButton({
-    Key? key,
-    this.text,
-    this.press,
-  }) : super(key: key);
+  const DefaultButton({Key? key, this.text, this.press, this.longPress})
+      : super(key: key);
   final String? text;
   final Function? press;
+  final Function? longPress;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +15,7 @@ class DefaultButton extends StatelessWidget {
       color: kPrimaryColor,
       child: InkWell(
         borderRadius: BorderRadius.circular(8),
+        onLongPress: longPress as void Function()?,
         onTap: press as void Function()?,
         child: Container(
           width: double.infinity,

@@ -52,7 +52,9 @@ class _HomeBodyState extends State<HomeBody> {
                 width: 15,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/notifications");
+                },
                 child: SizedBox(
                   height: 30,
                   width: 30,
@@ -75,53 +77,67 @@ class _HomeBodyState extends State<HomeBody> {
               const SizedBox(
                 width: 10,
               ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, "/settings");
+                },
+                child: Icon(
+                  Icons.settings,
+                  color: Colors.grey,
+                  size: 30,
+                ),
+              ),
+              const SizedBox(
+                width: 10,
+              ),
             ],
           ),
         ),
-
-        Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 15,
-                ),
-                Stories(),
-                Divider(
-                  color: Colors.grey,
-                ),
-                const SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Text("FEED"),
-                    ),
-                    Text("NEWS"),
-                    Text("TRENDING"),
-                    Text("NEARBY"),
-                    Text("DISCOVER"),
-                  ],
-                ),
-                ListView(
-                  primary: false,
-                  shrinkWrap: true,
-                  scrollDirection: Axis.vertical,
-                  children: <Widget>[
-                    feed(image: 'assets/images/2.png'),
-                    feed(image: 'assets/images/3.png'),
-                    feed(image: 'assets/images/1.png'),
-                    feed(image: 'assets/images/4.png'),
-                    feed(image: 'assets/images/3.png'),
-                    feed(image: 'assets/images/1.png'),
-                  ],
-                ),
-                SizedBox(
-                  height: 8,
-                ),
-              ],
+        Divider(
+          color: Colors.grey,
+        ),
+        DefaultTabController(
+          length: 5,
+          child: Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Stories(),
+                  const SizedBox(height: 8),
+                  TabBar(
+                    isScrollable: true,
+                    indicatorColor: kPrimaryColor,
+                    tabs: [
+                      Tab(text: "FEED"),
+                      Tab(text: "NEWS"),
+                      Tab(text: "TRENDING"),
+                      Tab(text: "NEARBY"),
+                      Tab(text: "DISCOVER"),
+                    ],
+                  ),
+                  const SizedBox(height: 10),
+                  ListView(
+                    primary: false,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.vertical,
+                    children: <Widget>[
+                      feed(image: 'assets/images/2.png'),
+                      feed(image: 'assets/images/3.png'),
+                      feed(image: 'assets/images/1.png'),
+                      feed(image: 'assets/images/4.png'),
+                      feed(image: 'assets/images/3.png'),
+                      feed(image: 'assets/images/1.png'),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
