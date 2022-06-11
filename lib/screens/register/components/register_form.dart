@@ -82,9 +82,25 @@ class _RegisterFormState extends State<RegisterForm> {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
                 // if all are valid then go to success screen
+
                 if (widget.number != null) {
-                  await AuthenticationAPI()
+                  String response = await AuthenticationAPI()
                       .register(widget.number, name!, username!, password!);
+
+                  if (response == 'true') {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text("Registration successful."),
+                      duration: Duration(seconds: 2),
+                    ));
+
+                    await Future.delayed(const Duration(seconds: 4), () {});
+                    Navigator.pushReplacementNamed(context, "signin");
+                  } else {
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text("Server response: " + response),
+                      duration: const Duration(seconds: 2),
+                    ));
+                  }
                 }
                 // print(name);
                 // print(username);

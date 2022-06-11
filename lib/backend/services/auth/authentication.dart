@@ -56,7 +56,7 @@ class AuthenticationAPI {
   }
 
   //------------------------------------------------REGISTER-------------------------------------------------------
-  Future<void> register(
+  Future<String> register(
       String phoneNumber, String name, String username, String password) async {
     var headers = {'Content-Type': 'application/json'};
     var request = http.Request(
@@ -75,8 +75,9 @@ class AuthenticationAPI {
 
     if (response.statusCode == 200) {
       print(await response.stream.bytesToString());
+      return "true";
     } else {
-      print(response.reasonPhrase);
+      return (response.reasonPhrase.toString());
     }
   }
 

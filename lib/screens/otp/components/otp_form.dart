@@ -155,7 +155,7 @@ class _OtpFormState extends State<OtpForm> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => RegisterForm(
+                      builder: (context) => RegisterScreen(
                         number: num,
                       ),
                     ),
