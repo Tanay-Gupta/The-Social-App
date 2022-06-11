@@ -16,6 +16,7 @@ class OtpForm extends StatefulWidget {
 }
 
 class _OtpFormState extends State<OtpForm> {
+  List<String> otp = List.filled(4, "", growable: false);
   FocusNode? pin2FocusNode;
   FocusNode? pin3FocusNode;
   FocusNode? pin4FocusNode;
@@ -46,7 +47,7 @@ class _OtpFormState extends State<OtpForm> {
   @override
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
-    String otp = "";
+
     return Form(
       child: Column(
         children: [
@@ -64,7 +65,7 @@ class _OtpFormState extends State<OtpForm> {
                   textAlign: TextAlign.center,
                   decoration: otpInputDecoration,
                   onChanged: (value) {
-                    otp += value;
+                    otp[0] = value;
                     nextField(value, pin2FocusNode);
                   },
                 ),
@@ -80,7 +81,7 @@ class _OtpFormState extends State<OtpForm> {
                   decoration: otpInputDecoration,
 
                   onChanged: (value) {
-                    otp += value;
+                    otp[1] = value;
                     nextField(value, pin3FocusNode);
                   },
                   // onChanged: (value) => nextField(value, pin3FocusNode),
@@ -97,7 +98,7 @@ class _OtpFormState extends State<OtpForm> {
                   decoration: otpInputDecoration,
 
                   onChanged: (value) {
-                    otp += value;
+                    otp[2] = value;
                     nextField(value, pin4FocusNode);
                   },
                   // onChanged: (value) => nextField(value, pin4FocusNode),
@@ -114,7 +115,7 @@ class _OtpFormState extends State<OtpForm> {
                   decoration: otpInputDecoration,
                   onChanged: (value) {
                     if (value.length == 1) {
-                      otp += value;
+                      otp[3] = value;
                       pin4FocusNode!.unfocus();
                       // Then you need to check is the code is correct or not
                     }
@@ -124,11 +125,13 @@ class _OtpFormState extends State<OtpForm> {
             ],
           ),
           SizedBox(height: screenSize.height * 0.02),
-          buildTimer(widget.number),
+          buildTimer(widget.number, context),
           SizedBox(height: screenSize.height * 0.02),
           DefaultButton(
             text: "NEXT",
             press: () async {
+              String finalOtp = otp[0] + otp[1] + otp[2] + otp[3];
+              print("added otp" + finalOtp);
               if (widget.number == null) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text("Invalid Number"),
@@ -141,8 +144,8 @@ class _OtpFormState extends State<OtpForm> {
                 ));
               } else {
                 String num = widget.number!;
-                String respose =
-                    await AuthenticationAPI().verifyOtp(widget.number, otp);
+                String respose = await AuthenticationAPI()
+                    .verifyOtp(widget.number, finalOtp);
                 if (respose == 'true') {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text("Number verified"),
@@ -159,7 +162,7 @@ class _OtpFormState extends State<OtpForm> {
                   );
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text(respose),
+                    content: Text("Server response: " + respose),
                     duration: const Duration(seconds: 2),
                   ));
                 }
@@ -193,20 +196,25 @@ class _OtpFormState extends State<OtpForm> {
   }
 }
 
-Row buildTimer(String? number) {
+Row buildTimer(String? number, BuildContext context) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       TextButton(
           onPressed: () async {
-            await AuthenticationAPI().sendOtp(number);
-            // if (await AuthenticationAPI().sendOtp(number)) {
-            // } else {
-            //   // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            //   //   content: Text("Server error :( please retry"),
-            //   //   duration: Duration(seconds: 2),
-            //   // ));
-            // }
+            String response = await AuthenticationAPI().sendOtp(number);
+
+            if (response == 'true') {
+              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                content: Text("Sending OTP...."),
+                duration: Duration(seconds: 2),
+              ));
+            } else {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("Server msg: " + response),
+                duration: const Duration(seconds: 2),
+              ));
+            }
           },
           child: const Text("RESEND OTP ?",
               style: TextStyle(fontSize: 14, color: Color(0xffF7DE00)))),
@@ -217,6 +225,21 @@ Row buildTimer(String? number) {
           "${value.toInt()} S",
           style: const TextStyle(fontSize: 14, color: Colors.white),
         ),
+        onEnd: () async {
+          String response = await AuthenticationAPI().sendOtp(number);
+
+          if (response == 'true') {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text("Sending OTP...."),
+              duration: Duration(seconds: 2),
+            ));
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text("Server msg: " + response),
+              duration: const Duration(seconds: 2),
+            ));
+          }
+        },
       ),
     ],
   );

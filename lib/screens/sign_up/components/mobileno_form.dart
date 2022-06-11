@@ -44,21 +44,22 @@ class MobileNumberForm extends StatelessWidget {
                   content: Text("Sending OTP...."),
                   duration: Duration(seconds: 2),
                 ));
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => OtpScreen(
-                      number: code + number.text.toString(),
-                      value: 0,
-                    ),
-                  ),
-                );
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                  content: Text(respose),
+                  content: Text("Server msg: " + respose),
                   duration: const Duration(seconds: 2),
                 ));
               }
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => OtpScreen(
+                    number: code + number.text.toString(),
+                    value: 0,
+                  ),
+                ),
+              );
             } //end of else
           },
           text: "NEXT",
