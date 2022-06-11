@@ -93,8 +93,8 @@ class _RegisterFormState extends State<RegisterForm> {
                       duration: Duration(seconds: 2),
                     ));
 
-                    await Future.delayed(const Duration(seconds: 4), () {});
-                    Navigator.pushReplacementNamed(context, "signin");
+                    await Future.delayed(const Duration(seconds: 3), () {});
+                    Navigator.pushReplacementNamed(context, "/signin");
                   } else {
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text("Server response: " + response),
