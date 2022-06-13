@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-
-import 'package:swag_app/screens/components/default_button.dart';
-
 import '../../../constants.dart';
 import 'otp_form.dart';
 
 class Body extends StatelessWidget {
   final String? number;
+  final int? value;
   const Body({
     Key? key,
+    this.value,
     this.number,
   }) : super(key: key);
 
@@ -42,48 +41,14 @@ class Body extends StatelessWidget {
                 ],
               ),
               SizedBox(height: screenSize.height * 0.035),
-              const OtpForm(),
-              SizedBox(height: screenSize.height * 0.02),
-              buildTimer(),
-              SizedBox(height: screenSize.height * 0.02),
-              DefaultButton(
-                text: "NEXT",
-                press: () {},
+              OtpForm(
+                number: number,
               ),
               SizedBox(height: screenSize.height * 0.1),
-              // GestureDetector(
-              //   onTap: () {
-              //     // OTP code resend
-              //   },
-              //   child: Text(
-              //     "Resend OTP Code",
-              //     style: TextStyle(decoration: TextDecoration.underline),
-              //   ),
-              // )
             ],
           ),
         ),
       ),
-    );
-  }
-
-  Row buildTimer() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        TextButton(
-            onPressed: () {},
-            child: const Text("RESEND OTP ?",
-                style: TextStyle(fontSize: 14, color: Color(0xffF7DE00)))),
-        TweenAnimationBuilder(
-          tween: Tween(begin: 60.0, end: 0.0),
-          duration: Duration(seconds: 60),
-          builder: (_, dynamic value, child) => Text(
-            "${value.toInt()} S",
-            style: const TextStyle(fontSize: 14, color: Colors.white),
-          ),
-        ),
-      ],
     );
   }
 }

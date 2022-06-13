@@ -37,7 +37,9 @@ dependencies:
   provider: ^6.0.3
   flutter_svg: ^1.0.3
   country_code_picker: ^2.0.2
-
+  http: ^0.13.4
+  fab_circular_menu:
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -77,9 +79,9 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Tondo
+    - family: Proxima nova
       fonts:
-        - asset: assets/tondo/tondo.ttf
+        - asset: assets/font/proxima_nova/proxima_nova.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro
