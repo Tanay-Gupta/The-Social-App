@@ -10,20 +10,25 @@ class ProfileStats extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Column(
-            children: [
-              Text("67k",
-                  style: TextStyle(
-                      //fontFamily: "proxia nova",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15)),
-              Text("followers",
-                  style: TextStyle(
-                      color: Colors.grey,
-                      //fontFamily: "proxia nova",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 12)),
-            ],
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/followers");
+            },
+            child: Column(
+              children: [
+                Text("67k",
+                    style: TextStyle(
+                        //fontFamily: "proxia nova",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15)),
+                Text("followers",
+                    style: TextStyle(
+                        color: Colors.grey,
+                        //fontFamily: "proxia nova",
+                        //fontWeight: FontWeight.bold,
+                        fontSize: 12)),
+              ],
+            ),
           ),
           Column(
             children: [
@@ -40,20 +45,25 @@ class ProfileStats extends StatelessWidget {
                       fontSize: 12)),
             ],
           ),
-          Column(
-            children: [
-              Text("52",
-                  style: TextStyle(
-                      //fontFamily: "proxia nova",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15)),
-              Text("following",
-                  style: TextStyle(
-                      color: Colors.grey,
-                      //fontFamily: "proxia nova",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 12)),
-            ],
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/following");
+            },
+            child: Column(
+              children: [
+                Text("52",
+                    style: TextStyle(
+                        //fontFamily: "proxia nova",
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15)),
+                Text("following",
+                    style: TextStyle(
+                        color: Colors.grey,
+                        //fontFamily: "proxia nova",
+                        //fontWeight: FontWeight.bold,
+                        fontSize: 12)),
+              ],
+            ),
           ),
         ],
       ),

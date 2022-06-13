@@ -38,8 +38,8 @@ dependencies:
   flutter_svg: ^1.0.3
   country_code_picker: ^2.0.2
   http: ^0.13.4
+  fab_circular_menu:
   
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

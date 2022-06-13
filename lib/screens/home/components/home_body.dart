@@ -67,7 +67,9 @@ class _HomeBodyState extends State<HomeBody> {
                 width: 15,
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/chatScreen");
+                },
                 child: SvgPicture.asset(
                   "assets/icons/u_comment.svg",
                   height: 30,
