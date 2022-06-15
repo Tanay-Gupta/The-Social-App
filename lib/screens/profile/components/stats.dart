@@ -13,17 +13,23 @@ class ProfileStats extends StatelessWidget {
           const SizedBox(
             width: 82,
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              Text("67k",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
-              SizedBox(
-                height: 5,
-              ),
-              Text("followers",
-                  style: TextStyle(color: Colors.grey, fontSize: 15)),
-            ],
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/followers");
+            },
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: const [
+                Text("67k",
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+                SizedBox(
+                  height: 5,
+                ),
+                Text("followers",
+                    style: TextStyle(color: Colors.grey, fontSize: 15)),
+              ],
+            ),
           ),
           const SizedBox(
             width: 50,
@@ -39,13 +45,19 @@ class ProfileStats extends StatelessWidget {
           const SizedBox(
             width: 50,
           ),
-          Column(
-            children: const [
-              Text("52",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
-              Text("following",
-                  style: TextStyle(color: Colors.grey, fontSize: 15)),
-            ],
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/following");
+            },
+            child: Column(
+              children: const [
+                Text("52",
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+                Text("following",
+                    style: TextStyle(color: Colors.grey, fontSize: 15)),
+              ],
+            ),
           ),
         ],
       ),

@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'SWAG',
       theme: theme(),
-      home: Nav(),
+      home: SignInScreen(),
       // home: StoryScreen(stories: stories),
       routes: {
         '/signin': (context) => SignInScreen(),
