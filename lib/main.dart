@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:swag_app/data.dart';
 import 'package:swag_app/routes.dart';
+import 'package:swag_app/screens/StoryScreens/story_screen.dart';
 import 'package:swag_app/screens/appBar/notifications.dart';
 import 'package:swag_app/screens/appBar/settings/editProfile.dart';
 import 'package:swag_app/screens/appBar/settings/settings.dart';
@@ -30,9 +32,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'SWAG',
       theme: theme(),
-      home: SignInScreen(),
+      home: Nav(),
+      // home: StoryScreen(stories: stories),
       routes: {
         '/signin': (context) => SignInScreen(),
+        // "/story":(context)=> StoryScreen(stories: stories),
         '/forget_password': (context) => ForgetPasswordScreen(),
         "/change_password": (context) => ChangePasswordScreen(),
         '/signup': (context) => SignUpScreen(),

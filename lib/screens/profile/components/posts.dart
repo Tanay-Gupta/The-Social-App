@@ -7,32 +7,25 @@ class ProfilePosts extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-                width: size.width * 0.49,
-                child: feed(image: "assets/images/1.png")),
-            Container(
-                width: size.width * 0.49,
-                child: feed(image: "assets/images/2.png")),
-          ],
-        ),
-        const SizedBox(height: 3),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Container(
-                width: size.width * 0.49,
-                child: feed(image: "assets/images/3.png")),
-            Container(
-                width: size.width * 0.49,
-                child: feed(image: "assets/images/4.png")),
-          ],
-        ),
-        const SizedBox(height: 5),
+    return GridView.count(
+      primary: true,
+      padding: const EdgeInsets.fromLTRB(3, 0, 3, 0),
+      crossAxisSpacing: 2,
+      mainAxisSpacing: 2,
+      crossAxisCount: 2,
+      children: <Widget>[
+        Container(
+            width: size.width * 0.49,
+            child: feed(image: "assets/images/1.png")),
+        Container(
+            width: size.width * 0.49,
+            child: feed(image: "assets/images/2.png")),
+        Container(
+            width: size.width * 0.49,
+            child: feed(image: "assets/images/3.png")),
+        Container(
+            width: size.width * 0.49,
+            child: feed(image: "assets/images/4.png")),
       ],
     );
   }
@@ -51,3 +44,28 @@ class ProfilePosts extends StatelessWidget {
     );
   }
 }
+
+
+
+// Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: [
+            //     Container(
+            //         width: size.width * 0.49,
+            //         child: feed(image: "assets/images/1.png")),
+            //     Container(
+            //         width: size.width * 0.49,
+            //         child: feed(image: "assets/images/2.png")),
+            //   ],
+            // ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            //   children: [
+            //     Container(
+            //         width: size.width * 0.49,
+            //         child: feed(image: "assets/images/3.png")),
+            //     Container(
+            //         width: size.width * 0.49,
+            //         child: feed(image: "assets/images/4.png")),
+            //   ],
+            // ),

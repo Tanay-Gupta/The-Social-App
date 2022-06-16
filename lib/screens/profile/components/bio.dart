@@ -6,10 +6,10 @@ class ProfileBio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: EdgeInsets.fromLTRB(12, 0, 0, 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        children: const [
           Text(
               "I'd rather regret the things I've done than regret the things I haven't done - Lucille Ball",
               style: TextStyle(

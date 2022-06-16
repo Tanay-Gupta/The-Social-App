@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:swag_app/screens/home/home.dart';
 import 'package:swag_app/screens/homescreen/leaderboard.dart';
 import 'package:swag_app/screens/homescreen/search.dart';
@@ -34,25 +35,30 @@ class _NavState extends State<Nav> {
           backgroundColor: Colors.black,
           currentIndex: currentIndex,
           onTap: (index) => setState(() => currentIndex = index),
-          items: const <BottomNavigationBarItem>[
+          items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              activeIcon: SvgPicture.asset("assets/icons/homeIcon.svg"),
+              icon: SvgPicture.asset("assets/icons/homeIconNA.svg"),
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.search),
+              activeIcon: SvgPicture.asset("assets/icons/searchIconA.svg"),
+              icon: SvgPicture.asset("assets/icons/searchIcon.svg"),
               label: 'Search',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.add_rounded),
+              activeIcon: SvgPicture.asset("assets/icons/postIconA.svg"),
+              icon: SvgPicture.asset("assets/icons/postIcon.svg"),
               label: 'Post',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.stacked_bar_chart),
+              activeIcon: SvgPicture.asset("assets/icons/leaderboardIconA.svg"),
+              icon: SvgPicture.asset("assets/icons/leaderboardIcon.svg"),
               label: 'Leaderboard',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline),
+              activeIcon: SvgPicture.asset("assets/icons/profileIconA.svg"),
+              icon: SvgPicture.asset("assets/icons/profileIcon.svg"),
               label: 'Profile',
             ),
           ],

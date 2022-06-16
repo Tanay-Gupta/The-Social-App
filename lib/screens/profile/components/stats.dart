@@ -6,53 +6,45 @@ class ProfileStats extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      transform: Matrix4.translationValues(-40, -28, 0),
+      transform: Matrix4.translationValues(-50, -28, 0),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
+          const SizedBox(
+            width: 82,
+          ),
           Column(
-            children: [
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
               Text("67k",
-                  style: TextStyle(
-                      //fontFamily: "proxia nova",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15)),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+              SizedBox(
+                height: 5,
+              ),
               Text("followers",
-                  style: TextStyle(
-                      color: Colors.grey,
-                      //fontFamily: "proxia nova",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 12)),
+                  style: TextStyle(color: Colors.grey, fontSize: 15)),
             ],
           ),
+          const SizedBox(
+            width: 50,
+          ),
           Column(
-            children: [
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
               Text("112",
-                  style: TextStyle(
-                      //fontFamily: "proxia nova",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15)),
-              Text("posts",
-                  style: TextStyle(
-                      color: Colors.grey,
-                      //fontFamily: "proxia nova",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 12)),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
+              Text("post", style: TextStyle(color: Colors.grey, fontSize: 15)),
             ],
           ),
+          const SizedBox(
+            width: 50,
+          ),
           Column(
-            children: [
+            children: const [
               Text("52",
-                  style: TextStyle(
-                      //fontFamily: "proxia nova",
-                      fontWeight: FontWeight.bold,
-                      fontSize: 15)),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22)),
               Text("following",
-                  style: TextStyle(
-                      color: Colors.grey,
-                      //fontFamily: "proxia nova",
-                      //fontWeight: FontWeight.bold,
-                      fontSize: 12)),
+                  style: TextStyle(color: Colors.grey, fontSize: 15)),
             ],
           ),
         ],

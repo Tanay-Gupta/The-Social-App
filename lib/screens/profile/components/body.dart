@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:swag_app/screens/forgot_password/componets/body.dart';
 import 'package:swag_app/screens/profile/components/bio.dart';
 import 'package:swag_app/screens/profile/components/header.dart';
 import 'package:swag_app/screens/profile/components/highlights.dart';
@@ -15,56 +16,66 @@ class ProfileBody extends StatefulWidget {
 class _ProfileHeaderState extends State<ProfileBody> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              ProfileHeader(),
-              ProfileStats(),
-              ProfileBio(),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, "/editProfile");
-                },
-                child: Container(
-                  alignment: Alignment.center,
-                  width: double.infinity,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: Colors.grey)),
-                  child: Text("EDIT PROFILE"),
-                ),
-              ),
-              SizedBox(
-                height: 6,
-              ),
-              Highlights(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+    return DefaultTabController(
+      length: 2,
+      child: SafeArea(
+          child: NestedScrollView(
+        headerSliverBuilder: (context, value) {
+          return [
+            SliverToBoxAdapter(
+              child: Column(
                 children: [
-                  TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "POST",
-                        style: TextStyle(
-                            color: Colors.white, fontWeight: FontWeight.bold),
-                      )),
-                  TextButton(
-                      onPressed: () {},
-                      child: Text(
-                        "VIDEOS",
-                        style: TextStyle(
-                            color: Colors.grey, fontWeight: FontWeight.bold),
-                      )),
+                  const ProfileHeader(),
+                  const ProfileStats(),
+                  const ProfileBio(),
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(12, 0, 12, 0),
+                    child: Material(
+                      borderRadius: BorderRadius.circular(6),
+                      color: Colors.black,
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, "/editProfile");
+                        },
+                        borderRadius: BorderRadius.circular(6),
+                        child: Container(
+                          height: 39,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(6),
+                              border:
+                                  Border.all(color: const Color(0xff3F3F3F))),
+                          child: const Center(
+                            child: Text("EDIT PROFILE"),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 32,
+                  ),
+                  Highlights(),
+
+                  // DefaultTabController(length: 2, child: ProfilePosts()),
                 ],
               ),
-              ProfilePosts(),
-            ],
-          ),
+            ),
+            SliverToBoxAdapter(
+              child: const TabBar(indicatorColor: Colors.transparent, tabs: [
+                Tab(
+                  text: "POST",
+                ),
+                Tab(
+                  text: "VIDEOS",
+                )
+              ]),
+            )
+          ];
+        },
+        body: const TabBarView(
+          children: <Widget>[ProfilePosts(), Center(child: Text("Videos"))],
         ),
-      ),
+      )),
     );
   }
 }

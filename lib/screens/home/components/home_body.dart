@@ -14,145 +14,163 @@ class HomeBody extends StatefulWidget {
 class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(children: [
-        // Text("hi"),
-        Container(
-          //  color: Colors.yellow,
-          height: 60,
-          child: Row(
-            children: [
-              const SizedBox(
-                width: 10,
-              ),
-              SizedBox(
-                height: 30,
-                width: 30,
-                child: SvgPicture.asset(
-                  "assets/icons/logo.svg",
+    return DefaultTabController(
+      length: 5,
+      child: SafeArea(
+          child: NestedScrollView(
+              headerSliverBuilder: (context, value) {
+                return [
+                  SliverToBoxAdapter(
+                      child: Column(children: [
+                    Container(
+                      //  color: Colors.yellow,
+                      height: 60,
+                      child: Row(
+                        children: [
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          SizedBox(
+                            height: 30,
+                            width: 30,
+                            child: SvgPicture.asset(
+                              "assets/icons/logo.svg",
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 5,
+                          ),
+                          const Text(
+                            "SWAG",
+                            textAlign: TextAlign.end,
+                            style: TextStyle(
+                                fontSize: 24, fontWeight: FontWeight.w800),
+                          ),
+                          const Spacer(),
+                          GestureDetector(
+                            onTap: () {},
+                            child: SizedBox(
+                                height: 25,
+                                width: 25,
+                                child:
+                                    SvgPicture.asset("assets/icons/live.svg")),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: SizedBox(
+                                height: 30,
+                                width: 30,
+                                child:
+                                    Image.asset("assets/icons/Icon_play.png")),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, "/notifications");
+                            },
+                            child: SizedBox(
+                              height: 25,
+                              width: 25,
+                              child: SvgPicture.asset(
+                                "assets/icons/fi_heart.svg",
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          GestureDetector(
+                            onTap: () {},
+                            child: SvgPicture.asset(
+                              "assets/icons/u_comment.svg",
+                              height: 25,
+                              width: 25,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          GestureDetector(
+                              onTap: () {
+                                Navigator.pushNamed(context, "/settings");
+                              },
+                              child: SvgPicture.asset(
+                                "assets/icons/settings.svg",
+                                height: 25,
+                                width: 25,
+                              )),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                        ],
+                      ),
+                    ),
+                    const Divider(
+                      color: Colors.grey,
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Stories(),
+                    const SizedBox(height: 8),
+                  ])),
+                  SliverToBoxAdapter(
+                    child: Column(
+                      children: [
+                        TabBar(
+                          isScrollable: true,
+                          indicatorColor: kPrimaryColor,
+                          tabs: [
+                            Tab(text: "FEED"),
+                            Tab(text: "NEWS"),
+                            Tab(text: "TRENDING"),
+                            Tab(text: "NEARBY"),
+                            Tab(text: "DISCOVER"),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 10,
+                        )
+                      ],
+                    ),
+                  )
+                ];
+              },
+              body: TabBarView(children: [
+                ListView(
+                  primary: true,
+                  // shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  children: <Widget>[
+                    feed(image: 'assets/images/2.png'),
+                    feed(image: 'assets/images/3.png'),
+                    feed(image: 'assets/images/1.png'),
+                    feed(image: 'assets/images/4.png'),
+                    feed(image: 'assets/images/3.png'),
+                    feed(image: 'assets/images/1.png'),
+                  ],
                 ),
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-              const Text(
-                "SWAG",
-                textAlign: TextAlign.end,
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.w800),
-              ),
-              const Spacer(),
-              GestureDetector(
-                onTap: () {},
-                child: SizedBox(
-                    height: 35,
-                    width: 35,
-                    child: Image.asset("assets/icons/Icon_play.png")),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, "/notifications");
-                },
-                child: SizedBox(
-                  height: 30,
-                  width: 30,
-                  child: SvgPicture.asset(
-                    "assets/icons/fi_heart.svg",
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              GestureDetector(
-                onTap: () {},
-                child: SvgPicture.asset(
-                  "assets/icons/u_comment.svg",
-                  height: 30,
-                  width: 30,
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.pushNamed(context, "/settings");
-                },
-                child: Icon(
-                  Icons.settings,
-                  color: Colors.grey,
-                  size: 30,
-                ),
-              ),
-              const SizedBox(
-                width: 10,
-              ),
-            ],
-          ),
-        ),
-        Divider(
-          color: Colors.grey,
-        ),
-        DefaultTabController(
-          length: 5,
-          child: Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Stories(),
-                  const SizedBox(height: 8),
-                  TabBar(
-                    isScrollable: true,
-                    indicatorColor: kPrimaryColor,
-                    tabs: [
-                      Tab(text: "FEED"),
-                      Tab(text: "NEWS"),
-                      Tab(text: "TRENDING"),
-                      Tab(text: "NEARBY"),
-                      Tab(text: "DISCOVER"),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  ListView(
-                    primary: false,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.vertical,
-                    children: <Widget>[
-                      feed(image: 'assets/images/2.png'),
-                      feed(image: 'assets/images/3.png'),
-                      feed(image: 'assets/images/1.png'),
-                      feed(image: 'assets/images/4.png'),
-                      feed(image: 'assets/images/3.png'),
-                      feed(image: 'assets/images/1.png'),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ]),
+                Text("h2"),
+                Text("h2"),
+                Text("h2"),
+                Text("h2"),
+              ]))),
     );
   }
 
   Widget feed({image}) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 2, 0, 2),
+      padding: const EdgeInsets.fromLTRB(2, 2, 2, 2),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 400,
+            height: 300,
             width: double.infinity,
             //margin: EdgeInsets.only(right: 20),
             decoration: BoxDecoration(
@@ -170,12 +188,12 @@ class _HomeBodyState extends State<HomeBody> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Roma Verma",
+                  Text("Roma",
                       style: TextStyle(
                           fontFamily: "proxia nova",
                           //fontWeight: FontWeight.bold,
                           fontSize: 15)),
-                  Text("2hrs ago",
+                  Text("2hr ago",
                       style: TextStyle(
                           color: Colors.grey,
                           fontFamily: "proxia nova",
@@ -184,7 +202,7 @@ class _HomeBodyState extends State<HomeBody> {
                 ],
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                //  mainAxisAlignment: MainAxisAlignment.,
                 children: [
                   //Image.asset("assets/icons/v2.png"),
                   IconButton(
