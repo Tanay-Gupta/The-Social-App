@@ -153,9 +153,12 @@ class _SearchScreenState extends State<SearchScreen> {
                   color: Color(0xff151515),
                   borderRadius: BorderRadius.circular(22)),
               child: TextField(
+                style: TextStyle(
+                  color: Colors.white,
+                ),
                 controller: _textEditingController,
                 focusNode: _textFocusNode,
-                cursorColor: Colors.black,
+                cursorColor: Colors.white,
                 decoration: InputDecoration(
                     border: InputBorder.none,
                     focusedBorder: InputBorder.none,

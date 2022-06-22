@@ -22,9 +22,9 @@ class _HomeBodyState extends State<HomeBody> {
                 return [
                   SliverToBoxAdapter(
                       child: Column(children: [
-                    Container(
+                    SizedBox(
                       //  color: Colors.yellow,
-                      height: 60,
+                      height: 45,
                       child: Row(
                         children: [
                           const SizedBox(
@@ -85,9 +85,7 @@ class _HomeBodyState extends State<HomeBody> {
                             width: 10,
                           ),
                           GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, "/chatScreen");
-                            },
+                            onTap: () {},
                             child: SvgPicture.asset(
                               "assets/icons/u_comment.svg",
                               height: 25,
@@ -123,14 +121,14 @@ class _HomeBodyState extends State<HomeBody> {
                   ])),
                   SliverToBoxAdapter(
                     child: Column(
-                      children: [
+                      children: const [
                         TabBar(
                           isScrollable: true,
                           indicatorColor: kPrimaryColor,
                           tabs: [
                             Tab(text: "FEED"),
-                            Tab(text: "NEWS"),
                             Tab(text: "TRENDING"),
+                            Tab(text: "NEWS"),
                             Tab(text: "NEARBY"),
                             Tab(text: "DISCOVER"),
                           ],
@@ -157,14 +155,27 @@ class _HomeBodyState extends State<HomeBody> {
                     feed(image: 'assets/images/1.png'),
                   ],
                 ),
-                Center(child: Text("News")),
-                Center(child: Text("Trending")),
-                Center(child: Text("Nearby")),
-                Center(child: Text("Discover")),
+                ListView(
+                  primary: true,
+                  // shrinkWrap: true,
+                  scrollDirection: Axis.vertical,
+                  children: <Widget>[
+                    trending(image: 'assets/images/4.png'),
+                    trending(image: 'assets/images/3.png'),
+                    trending(image: 'assets/images/1.png'),
+                    trending(image: 'assets/images/2.png'),
+                    trending(image: 'assets/images/3.png'),
+                    trending(image: 'assets/images/1.png'),
+                  ],
+                ),
+                const Text("same as trending"),
+                const Text("same as trending"),
+                const Text("same as trending"),
               ]))),
     );
   }
 
+//<-------------------------------------------------POST FEED---------------------------------------->
   Widget feed({image}) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(2, 2, 2, 2),
@@ -172,29 +183,36 @@ class _HomeBodyState extends State<HomeBody> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            height: 300,
+            height: 400,
             width: double.infinity,
             //margin: EdgeInsets.only(right: 20),
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(16),
                 image: DecorationImage(
                     image: AssetImage(image), fit: BoxFit.cover)),
           ),
-          SizedBox(
+          const SizedBox(
             height: 6,
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              CircleAvatar(backgroundImage: AssetImage('assets/images/1.png')),
+              const SizedBox(
+                width: 6,
+              ),
+              const CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/1.png')),
+              const SizedBox(
+                width: 6,
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text("Roma",
+                children: const [
+                  Text("Roma Verma",
                       style: TextStyle(
-                          fontFamily: "proxia nova",
-                          //fontWeight: FontWeight.bold,
-                          fontSize: 15)),
+                        fontSize: 13,
+                        fontWeight: FontWeight.bold,
+                      )),
                   Text("2hr ago",
                       style: TextStyle(
                           color: Colors.grey,
@@ -203,71 +221,261 @@ class _HomeBodyState extends State<HomeBody> {
                           fontSize: 12)),
                 ],
               ),
-              Row(
-                //  mainAxisAlignment: MainAxisAlignment.,
-                children: [
-                  //Image.asset("assets/icons/v2.png"),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.send_sharp,
-                        color: Colors.white,
+              const Spacer(),
+              GestureDetector(
+                onTap: () {},
+                child: SvgPicture.asset(
+                  "assets/icons/homeShare.svg",
+                  height: 20,
+                ),
+              ),
+              const SizedBox(
+                width: 6,
+              ),
+              const Text("100K",
+                  style: TextStyle(
+                      //color: Colors.grey,
+                      // fontFamily: "proxia nova",
+                      fontSize: 13)),
+              const SizedBox(
+                width: 10,
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: SvgPicture.asset(
+                  "assets/icons/homeComments.svg",
+                  height: 20,
+                ),
+              ),
+              const SizedBox(
+                width: 6,
+              ),
+              const Text("100K",
+                  style: TextStyle(
+                      //color: Colors.grey,
+                      fontFamily: "proxia nova",
+                      fontSize: 13
+                      //fontWeight: FontWeight.bold,
+                      //fontSize: 10
                       )),
-                  Text("100K",
-                      style: TextStyle(
-                        //color: Colors.grey,
-                        fontFamily: "proxia nova",
-                        //fontWeight: FontWeight.bold,
-                        //fontSize: 10
-                      )),
-                  //Image.asset("assets/icons/v1.png"),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.comment_sharp,
-                        color: Colors.white,
-                      )),
-                  Text("100K",
-                      style: TextStyle(
-                        //color: Colors.grey,
-                        fontFamily: "proxia nova",
-                        //fontWeight: FontWeight.bold,
-                        //fontSize: 10
-                      )),
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.favorite,
-                        color: kPrimaryColor,
-                      )),
-                  Text("100K",
-                      style: TextStyle(
-                        //color: Colors.grey,
-                        fontFamily: "proxia nova",
-                        //fontWeight: FontWeight.bold,
-                        //fontSize: 10
-                      )),
-                ],
+              const SizedBox(
+                width: 10,
+              ),
+              GestureDetector(
+                onTap: () {},
+                child: SvgPicture.asset(
+                  "assets/icons/fi_heart.svg",
+                  height: 20,
+                ),
+              ),
+              const SizedBox(
+                width: 6,
+              ),
+              const Text("100K",
+                  style: TextStyle(
+                    fontSize: 13,
+                    //color: Colors.grey,
+                    fontFamily: "proxia nova",
+                    //fontWeight: FontWeight.bold,
+                    //fontSize: 10
+                  )),
+              const SizedBox(
+                height: 6,
               ),
             ],
           ),
-          SizedBox(
-            height: 5,
+          const SizedBox(
+            height: 8,
           ),
-          Text(
-            "I'd rather regret the things I've done than regret the",
-            style: TextStyle(fontFamily: "poppins"),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(6, 2, 20, 0),
+            child: Text(
+              "I'd rather regret the things I've done than regret the",
+            ),
           ),
-          Text(
-            "#moreviews  #newpic #love more....",
-            style: TextStyle(color: Colors.green, fontFamily: "poppins"),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(6, 0, 20, 0),
+            child: Text(
+              "#moreviews  #newpic #love more....",
+              style: TextStyle(
+                color: Colors.green,
+              ),
+            ),
           ),
-          Text(
-            "VIEW ALL 345 COMMENTS",
-            style: TextStyle(color: Colors.grey, fontFamily: "poppins"),
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, "/comments");
+            },
+            child: const Padding(
+              padding: EdgeInsets.fromLTRB(6, 2, 20, 0),
+              child: Text(
+                "VIEW ALL 345 COMMENTS",
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+            ),
           ),
-          SizedBox(
-            height: 5,
+          const SizedBox(
+            height: 15,
+          ),
+        ],
+      ),
+    );
+  }
+
+  //<-------------------------------------------------POST FEED ENDS---------------------------------------->
+
+  Widget trending({image}) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(2, 2, 2, 2),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Stack(
+            children: [
+              Container(
+                height: 400,
+                width: double.infinity,
+                //margin: EdgeInsets.only(right: 20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: DecorationImage(
+                        image: AssetImage(image), fit: BoxFit.cover)),
+              ),
+              Positioned(
+                  bottom: 55,
+                  right: 5,
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: SvgPicture.asset(
+                          "assets/icons/trendingHeart.svg",
+                          height: 20,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      const Text("100K",
+                          style: TextStyle(
+                            fontSize: 13,
+                            //color: Colors.grey,
+                            fontFamily: "proxia nova",
+                            //fontWeight: FontWeight.bold,
+                            //fontSize: 10
+                          )),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: SvgPicture.asset(
+                          "assets/icons/homeComments.svg",
+                          height: 20,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      const Text("10K", style: TextStyle(fontSize: 13)),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      GestureDetector(
+                        onTap: () {},
+                        child: SvgPicture.asset(
+                          "assets/icons/homeShare.svg",
+                          height: 20,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 6,
+                      ),
+                      const Text("100K",
+                          style: TextStyle(
+                              //color: Colors.grey,
+                              // fontFamily: "proxia nova",
+                              fontSize: 13)),
+                    ],
+                  )),
+              Positioned(
+                bottom: 0,
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  color: Colors.black54,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 3, top: 3),
+                    child: Row(
+                      //  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const SizedBox(
+                          width: 6,
+                        ),
+                        const CircleAvatar(
+                            backgroundImage: AssetImage('assets/images/4.png')),
+                        const SizedBox(
+                          width: 6,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text("Roma Verma",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                            Text("2hr ago",
+                                style: TextStyle(
+                                    color: Colors.grey,
+                                    fontFamily: "proxia nova",
+                                    //fontWeight: FontWeight.bold,
+                                    fontSize: 12)),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 6,
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(6, 2, 20, 0),
+            child: Text(
+              "I'd rather regret the things I've done than regret the",
+            ),
+          ),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(6, 0, 20, 0),
+            child: Text(
+              "#moreviews  #newpic #love more....",
+              style: TextStyle(
+                color: Colors.green,
+              ),
+            ),
+          ),
+          GestureDetector(
+            onTap: () {},
+            child: const Padding(
+              padding: EdgeInsets.fromLTRB(6, 2, 20, 0),
+              child: Text(
+                "VIEW ALL 25 COMMENTS",
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(
+            height: 15,
           ),
         ],
       ),
